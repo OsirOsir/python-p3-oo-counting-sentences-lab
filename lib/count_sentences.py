@@ -1,50 +1,38 @@
 #!/usr/bin/env python3
-
 import re
-import sys
-
 class MyString:
-    def __init__(self, value=''):
-        if not isinstance(value, str):
-            print("The value must be a string.")
-            self._value = ''
-        else:
-            self._value = value
-        print(f"Initialized MyString with value: '{self._value}'")
-
-    @property
-    def value(self):
-        return self._value
-
-    @value.setter
-    def value(self, val):
-        if not isinstance(val, str):
-            print("The value must be a string.")
-        else:
-            self._value = val
-            print(f"Value set to: '{self._value}'")
-
-    def is_sentence(self):
-        '''Returns True if value ends with a period and False otherwise.'''
-        result = self._value.endswith('.')
-        print(f"Checking if value ends with a period: {result}")
-        return result
-
-    def is_question(self):
-        '''Returns True if value ends with a question mark and False otherwise.'''
-        result = self._value.endswith('?')
-        print(f"Checking if value ends with a question mark: {result}")
-        return result
-
-    def is_exclamation(self):
-        '''Returns True if value ends with an exclamation mark and False otherwise.'''
-        result = self._value.endswith('!')
-        print(f"Checking if value ends with an exclamation mark: {result}")
-        return result
-
-    def count_sentences(self):
-        '''Returns the number of sentences in the value.'''
-        sentences = re.split(r'[.!?]+', self._value)
-        sentence_count = len([s for s in sentences if s.strip()])
-        print(f"Counted sentences: {sentence_count}")
-        return sentence_count
+  def __init__(self, value = ''):
+    if isinstance(value, str):
+      self._value = value
+    else:
+      self._value = None
+      print("The value must be a string.")
+    
+  @property
+  def value(self):
+    return self._value
+  
+  @value.setter
+  def value(self, new_value):
+    if isinstance(new_value, str):
+      self._value = new_value
+      
+    else:
+      print("The value must be a string.")
+    
+  def is_sentence(self):
+    return self._value.endswith('.')
+  
+  def is_question(self):
+    return self._value.endswith('?')
+  
+  def is_exclamation(self):
+    return self._value.endswith('!')
+  
+  def count_sentences(self):
+    sentences = re.split(r'[.!?]', self._value)
+    sentences = [s for s in sentences if s.strip()]
+    
+    return len(sentences)
+    
+  
